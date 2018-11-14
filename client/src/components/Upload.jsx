@@ -17,20 +17,55 @@ const styles = theme => ({
 
 class Upload extends Component {
     
-    
+    constructor(props){
+        super(props);
+
+        this.uploadInput = React.createRef();
+
+        this.state = {
+            imageUrl: '',
+        };
+
+        this.handleImageUpload = this.handleImageUpload.bind(this);
+    }
+
+    handleImageUpload(event){
+        event.preventDefault();
+        console.log('klik')
+        const data = new FormData();
+        console.log(this.uploadInput.current.files[0]);
+        console.log(this.uploadInput.current.files.length);
+        data.append('file', this.uploadInput.current.files[0]);
+         
+
+        fetch('http://172.20.10.7:5000/upload', {
+            method: 'POST',
+            body: data, 
+          }).then((response) => {
+            console.log(response)
+          });
+        }
+
+        readFile = (file) => {
+            
+        }
+
 
     render() {
         const { classes } = this.props;
             return (
                 <div>
                 <input
+                        type="file"
+                        ref={this.uploadInput}
+                        onChange={this.handleImageUpload}
                         accept="image/*"
                         className={classes.input}
                         id='contained-button-file'
-                        type="file"
+                        
                     />
                 <label htmlFor='contained-button-file'>
-                <Button 
+                <Button  
                 variant="contained" 
                 component='span'
                 className={classes.button}

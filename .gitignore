@@ -1,13 +1,20 @@
 # Python
 __pycache__/
+.pytest_cache/
+.pyc
+
+# directories
+uploads/
 
 # JavaScript
 node_modules/
+
 
 # images
 *.jpg
 *.jpeg
 *.png
-
+*.HEIC
 # Miscellaneous
 *.log
+.vscode/
